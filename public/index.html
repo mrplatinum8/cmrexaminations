@@ -150,7 +150,7 @@
                         <img id="Image2" class="mx-auto d-block img-fluid" src="Images/header.jpg" style="width:100%;border-width:0px;">
                     </div>
                 </div>
-                <form name="ctl00" method="get" action="home.html" id="ctl00" onsubmit="window.location.href='home.html'; return false;">
+                <form name="ctl00" method="get" action="home.html" id="ctl00" onsubmit="return false;">
 
                     <div class="container">
                         <div class="row">
@@ -219,8 +219,9 @@
                                         <input name="txtPassword" type="password" id="txtPassword" placeholder="Enter Password" class="form-control">
                                     </div>
                                     <div class="next_button">
-                                        <input type="submit" name="btnSubmit" value="Submit" id="btnSubmit" class="btn btn-primary btn-md btn-block">
+                                        <input type="button" name="btnSubmit" value="Submit" id="btnSubmit" class="btn btn-primary btn-md btn-block" onclick="validateAndLogin()">
                                     </div>
+                                    <span id="lblPasswordWarning" style="color:Red; font-size:13px;"></span>
                                     <p style="margin-top:10px;">
                                         <a href="#" style="color:Blue; font-size:13px;">Forgot Your Password?</a>
                                     </p>
@@ -281,6 +282,17 @@
             document.getElementById('step2').style.display = 'none';
             document.getElementById('step1').style.display = 'block';
             document.getElementById('txtUserName').focus();
+        }
+
+        function validateAndLogin() {
+            var password = document.getElementById('txtPassword').value;
+            if (password === 'MVEMJSUN@9') {
+                window.location.href = 'home.html';
+            } else {
+                document.getElementById('lblPasswordWarning').innerText = 'Wrong Password. Please try again.';
+                document.getElementById('txtPassword').value = '';
+                document.getElementById('txtPassword').focus();
+            }
         }
     </script>
 
