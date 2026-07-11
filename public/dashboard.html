@@ -245,6 +245,41 @@
         .attendance-table-container {
             max-width: 650px;
         }
+
+        /* Custom dropdown styles */
+        .dropdown-li {
+            position: relative;
+        }
+
+        .dropdown-menu-custom {
+            display: none;
+            position: absolute;
+            background-color: #e65100;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1000;
+            top: 100%;
+            left: 0;
+        }
+
+        .dropdown-menu-custom a {
+            color: #fff !important;
+            padding: 8px 12px !important;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .dropdown-menu-custom a:hover {
+            background-color: rgba(0,0,0,0.2) !important;
+        }
+
+        /* Show the dropdown menu on hover or when show-dropdown class is applied */
+        .dropdown-li:hover .dropdown-menu-custom,
+        .dropdown-li.show-dropdown .dropdown-menu-custom {
+            display: block;
+        }
     </style>
 </head>
 <body>
@@ -271,7 +306,12 @@
     <ul class="orange-tabs">
         <li><a href="#">@ Office &#x25BC;</a></li>
         <li><a href="#">&#x25BC;Academics &#x25BC;</a></li>
-        <li><a href="duesubjects.html">Examination Cell &#x25BC;</a></li>
+        <li class="dropdown-li">
+            <a href="#" class="dropdown-toggle-btn">Examination Cell &#x25BC;</a>
+            <div class="dropdown-menu-custom">
+                <a href="duesubjects.html">Due Subjects</a>
+            </div>
+        </li>
         <li><a href="#">Library &#x25BC;</a></li>
         <li><a href="#">Placements &#x25BC;</a></li>
         <li><a href="#">Utilities &#x25BC;</a></li>
@@ -365,5 +405,17 @@
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.dropdown-toggle-btn').on('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                $(this).parent().toggleClass('show-dropdown');
+            });
+            $(document).on('click', function() {
+                $('.dropdown-li').removeClass('show-dropdown');
+            });
+        });
+    </script>
 </body>
 </html>
